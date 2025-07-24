@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; line-height: 1.4; }
+    h3 { margin-top: 20px; margin-bottom: 5px; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    textarea, input { width: 95%; padding: 6px; margin-top: 4px; }
+    button { margin-top: 12px; padding: 8px 12px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- After Call Section -->
+  <h3>After Call Notes</h3>
+  <label for="who">Who?</label>
+  <input type="text" id="who">
+  <label for="what">What?</label>
+  <textarea id="what" rows="2"></textarea>
+  <label for="resolution">Resolution:</label>
+  <textarea id="resolution" rows="2"></textarea>
+  <label for="followup">Follow-up?</label>
+  <input type="text" id="followup">
+  <button onclick="copyAfterCall()">📋 Copy Call Notes</button>
+
+  <!-- Reservice Appointment Section -->
+  <h3>Reservice Notes</h3>
+  <label for="res_what">What?</label>
+  <textarea id="res_what" rows="2"></textarea>
+  <label for="res_where">Where?</label>
+  <input type="text" id="res_where">
+  <label for="res_when">When?</label>
+  <input type="text" id="res_when">
+  <label for="res_howmany">How Many?</label>
+  <input type="text" id="res_howmany">
+  <button onclick="copyReservice()">📋 Copy Reservice Notes</button>
+
+  <!-- Regular Appointment Section -->
+  <h3>Regular Appt Notes</h3>
+  <label for="reason">Reason?</label>
+  <textarea id="reason" rows="2"></textarea>
+  <label for="context">Context:</label>
+  <textarea id="context" rows="2"></textarea>
+  <label for="situation">Pest Situation:</label>
+  <textarea id="situation" rows="2"></textarea>
+  <button onclick="copyRegular()">📋 Copy Appt. Notes</button>
+
+  <script>
+    async function copyAfterCall() {
+      try {
+        const who = document.getElementById("who");
+        const what = document.getElementById("what");
+        const resolution = document.getElementById("resolution");
+        const followup = document.getElementById("followup");
+
+        if (!who || !what || !resolution || !followup) throw new Error("Missing After Call inputs.");
+
+        const text =
+          `Who? ${who.value}\n` +
+          `What? ${what.value}\n` +
+          `Resolution: ${resolution.value}\n` +
+          `Follow-up?: ${followup.value}`;
+
+        await navigator.clipboard.writeText(text);
+        alert("📞 After Call Notes Copied!");
+      } catch (err) {
+        console.error(err);
+        alert("❌ Unable to copy notes. Please check form elements and clipboard permissions.");
+      }
+    }
+
+    async function copyReservice() {
+      try {
+        const what = document.getElementById("res_what");
+        const where = document.getElementById("res_where");
+        const when = document.getElementById("res_when");
+        const howmany = document.getElementById("res_howmany");
+
+        if (!what || !where || !when || !howmany) throw new Error("Missing Reservice inputs.");
+
+        const text =
+          `What? ${what.value}\n` +
+          `Where? ${where.value}\n` +
+          `When? ${when.value}\n` +
+          `How Many? ${howmany.value}`;
+
+        await navigator.clipboard.writeText(text);
+        alert("🔧 Reservice Appointment Notes Copied!");
+      } catch (err) {
+        console.error(err);
+        alert("❌ Unable to copy reservice notes. Please check form elements and clipboard permissions.");
+      }
+    }
+
+    async function copyRegular() {
+      try {
+        const reason = document.getElementById("reason");
+        const context = document.getElementById("context");
+        const situation = document.getElementById("situation");
+
+        if (!reason || !context || !situation) throw new Error("Missing Regular Appointment inputs.");
+
+        const text =
+          `Reason? ${reason.value}\n` +
+          `Context: ${context.value}\n` +
+          `Pest Situation: ${situation.value}`;
+
+        await navigator.clipboard.writeText(text);
+        alert("📆 Regular Appointment Notes Copied!");
+      } catch (err) {
+        console.error(err);
+        alert("❌ Unable to copy appointment notes. Please check form elements and clipboard permissions.");
+      }
+    }
+  </script>
+
+</body>
+</html>

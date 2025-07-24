@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greenix Pest Coverage Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #008060;
+      color: white;
+      padding: 1.5em;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1em;
+      background: #eee;
+      padding: 0.75em;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #008060;
+    }
+    section {
+      padding: 1.5em;
+      border-bottom: 1px solid #ddd;
+    }
+    h2 {
+      color: #008060;
+      margin-top: 0.5em;
+    }
+    .guaranteed { background: #e6fff0; }
+    .courtesy { background: #fffbe6; }
+    .excluded { background: #ffe6e6; }
+    .pest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1em;
+    }
+    .pest-card, .script-card, .result-card {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      margin-bottom: 1em;
+    }
+    details summary {
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5em;
+    }
+    details[open] {
+      border-color: #008060;
+    }
+    #pestSearch {
+      padding: 0.5em;
+      width: 100%;
+      font-size: 1em;
+      margin-bottom: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .library-link {
+      display: inline-block;
+      margin-top: 0.5em;
+      padding: 0.4em 0.6em;
+      background: #008060;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .library-link:hover {
+      background: #005a42;
+    }
+    #float-shortcuts {
+      position: fixed;
+      bottom: 1.5em;
+      right: 1.5em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75em;
+      z-index: 1000;
+    }
+    .float-btn {
+      background: #008060;
+      color: white;
+      padding: 0.6em 1em;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .float-btn:hover {
+      background: #005a42;
+    }
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: center; }
+      .pest-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧭 Greenix Pest Coverage Reference</h1>
+    <p>Fast, clear, actionable answers for frontline agents</p>
+  </header>
+
+  <nav>
+    <a href="#hero">🌟 Overview</a>
+    <a href="#guaranteed">🟩 Guaranteed</a>
+    <a href="#courtesy">🛎️ Courtesy</a>
+    <a href="#scripts">💬 Scripts</a>
+    <a href="#lookup">🔍 Grid</a>
+    <a href="#search">🧪 Search</a>
+  </nav>
+
+  <main>
+    <div class="content-wrapper">
+  <!-- All your <section> blocks go here -->
+
+    <!-- 🧭 Hero Section -->
+    <section id="hero" style="text-align:center; padding:2em 1em; background:#e6fff0;">
+      <h2 style="font-size:2em; color:#008060;">What’s Covered. What’s Not. No Guesswork.</h2>
+      <p style="font-size:1.2em; max-width:600px; margin:0 auto;">
+        Instantly look up pests, understand your coverage, and answer with confidence—no second-guessing call phrasing or approval logic.
+      </p>
+    </section>
+
+    <!-- 🟩 Guaranteed Pests -->
+    <section id="guaranteed" class="guaranteed">
+      <h2>🟩 Guaranteed Pests</h2>
+      <p>These pests are included in your Greenix subscription and treated proactively during quarterly visits.</p>
+      <ul>
+        <li><strong>🕷️ Spiders</strong></li>
+        <li><strong>🐜 Ants</strong></li>
+        <li><strong>🪳 Cockroach (non-German)</strong></li>
+        <li><strong>🦗 Crickets</strong></li>
+        <li><strong>🐌 Pill Bugs</strong></li>
+      </ul>
+      <p><em>Script:</em> “These are part of our guaranteed list—we treat them automatically as part of your regular service.”</p>
+    </section>
+
+    <!-- 🛎️ Courtesy Pests -->
+    <section id="courtesy" class="courtesy">
+      <h2>🛎️ Courtesy Pests</h2>
+      <p>These pests are not covered by our guarantee, but can be treated upon customer request. Always document communication in appointment notes.</p>
+      <ul>
+        <li><strong>🧫 Clover Mites</strong></li>
+        <li><strong>🦟 Chiggers</strong></li>
+        <li><strong>🪰 Stink Bugs</strong></li>
+        <li><strong>🐞 Japanese Beetles</strong></li>
+        <li><strong>🐝 Carpenter Bees (≤10 holes)</strong></li>
+        <li><strong>🐍 Snakes</strong></li>
+      </ul>
+      <p><em>Script:</em> “We treat those pests on request! They're part of our courtesy category—not covered by guarantee, but we help during the visit.”</p>
+    </section>
+
+    <!-- 💬 Call Scripts (Accordion Toggle) -->
+    <section id="scripts">
+      <h2>💬 Call Scripts</h2>
+      <details class="script-card">
+        <summary>🟩 Guaranteed Pests</summary>
+        <p><strong>Script:</strong> “That’s one of our guaranteed pests! We automatically treat for it as part of your regular service.”</p>
+      </details>
+      <details class="script-card">
+        <summary>🛎️ Courtesy Pests</summary>
+        <p><strong>Script:</strong> “We absolutely help treat those when requested! They fall under our courtesy list—no guarantee, but we use kill-on-contact product.”</p>
+      </details>
+      <details class="script-card">
+        <summary>❌ Not Covered Pests</summary>
+        <p><strong>Script:</strong> “That pest isn’t part of our current treatment program, but I’ll help explore alternatives and get you connected with the right resources.”</p>
+      </details>
+    </section>
+
+    <!-- 🐛 Pest Lookup Grid -->
+    <section id="lookup">
+      <h2>🔍 Pest Lookup Grid</h2>
+      <p>Tap any pest icon to reveal coverage, trigger logic, and call phrasing. Icons indicate coverage status: 🟩 Guaranteed | 🟨 Courtesy | ❌ Excluded</p>
+      <div class="pest-grid">
+        <div class="pest-card guaranteed">
+          <h3>🕷️ Spiders</h3>
+          <p>🟩 Guaranteed | Treated automatically</p>
+          <p><strong>Script:</strong> “Spiders are part of our core coverage—we treat them proactively.”</p>
+          <a href="https://www.greenixpc.com/pest-library/spiders" target="_blank" rel="noopener" class="library-link">🔗 View in Pest Library</a>
+        </div>
+        <div class="pest-card courtesy">
+            <h3>🧫 Clover Mites</h3>
+            <p>🟨 Courtesy | Treat on request</p>
+            <p><strong>Script:</strong> “Clover mites fall into our courtesy category—we’ll treat them when requested.”</p>
+                <a href="https://www.greenixpc.com/pest-library/clover-mites" target="_blank" rel="noopener" class="library-link">🔗 View in Pest Library</a>
+        </div>
+
+        <div class="pest-card excluded">
+          <h3>🛏️ Bed Bugs</h3>
+          <p>❌ Not Covered | Refer out</p>
+          <p><strong>Script:</strong> “Bed bugs aren’t part of our treatment program. We’ll guide you to the right support.”</p>
+          <a href="https://www.greenixpc.com/pest-library/bed-bugs" target="_blank" rel="noopener" class="library-link">🔗 View in Pest Library</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🧪 Pest Search Tool -->
+    <section id="search">
+      <h2>🧪 Pest Search Tool</h2>
+      <input type="text" id="pestSearch" placeholder="Type a pest name…" />
+      <div id="resultContainer"></div>
+    </section>
+    </div>
+  </main>
+
+  <!-- 📌 Floating Shortcuts -->
+  <div id="float-shortcuts">
+    <a href="#search" class="float-btn">🧪 Search</a>
+    <a href="https://www.greenixpc.com/pest-library" class="float-btn" target="_blank" rel="noopener">🔗 Library</a>
+  </div>
+
+  <!-- 🔌 External JS + Live Search Hook -->
+  <script src="pest-data.js"></script>
+  <script>
+    document.getElementById("pestSearch").addEventListener("input", function () {
+      const query = this.value.trim().toLowerCase();
+      const pest = pests[query];
+      const container = document.getElementById("resultContainer");
+
+      container.innerHTML = pest
+        ? `<div class="result-card">
+            <h3>${query.charAt(0).toUpperCase() + query.slice(1)}</h3>
+            <p><strong>Category:</strong> ${pest.category}</p>
+            <p><strong>Script:</strong> ${pest.script}</p>
+            <p><strong>Notes:</strong> ${pest.notes}</p>
+            <a href="${pest.library_url}" target="_blank" rel="noopener" class="library-link">
+              🔗 View in Pest Library
+            </a>
+          </div>`
+        : query
+          ? `<p>No match found for "<strong>${query}</strong>". Try another name.</p>`
+          : "";
+    });
+  </script>
+</body>
+</html>
